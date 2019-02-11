@@ -5,22 +5,22 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : bovo
-Version  : 18.08.0
-Release  : 1
-URL      : https://download.kde.org/stable/applications/18.08.0/src/bovo-18.08.0.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.08.0/src/bovo-18.08.0.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.08.0/src/bovo-18.08.0.tar.xz.sig
-Summary  : No detailed summary available
+Version  : 18.12.2
+Release  : 2
+URL      : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz.sig
+Summary  : A Gomoku like game for two players
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
-Requires: bovo-bin
-Requires: bovo-data
-Requires: bovo-license
-Requires: bovo-locales
+Requires: bovo-bin = %{version}-%{release}
+Requires: bovo-data = %{version}-%{release}
+Requires: bovo-license = %{version}-%{release}
+Requires: bovo-locales = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev qtbase-extras mesa-dev
+BuildRequires : qtbase-dev mesa-dev
 
 %description
 EXTENDED
@@ -28,8 +28,8 @@ EXTENDED
 %package bin
 Summary: bin components for the bovo package.
 Group: Binaries
-Requires: bovo-data
-Requires: bovo-license
+Requires: bovo-data = %{version}-%{release}
+Requires: bovo-license = %{version}-%{release}
 
 %description bin
 bin components for the bovo package.
@@ -68,26 +68,26 @@ locales components for the bovo package.
 
 
 %prep
-%setup -q -n bovo-18.08.0
+%setup -q -n bovo-18.12.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535224660
-mkdir clr-build
+export SOURCE_DATE_EPOCH=1549893949
+mkdir -p clr-build
 pushd clr-build
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535224660
+export SOURCE_DATE_EPOCH=1549893949
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/bovo
-cp COPYING %{buildroot}/usr/share/doc/bovo/COPYING
-cp COPYING.DOC %{buildroot}/usr/share/doc/bovo/COPYING.DOC
+mkdir -p %{buildroot}/usr/share/package-licenses/bovo
+cp COPYING %{buildroot}/usr/share/package-licenses/bovo/COPYING
+cp COPYING.DOC %{buildroot}/usr/share/package-licenses/bovo/COPYING.DOC
 pushd clr-build
 %make_install
 popd
@@ -150,9 +150,9 @@ popd
 /usr/share/doc/HTML/uk/bovo/mainscreen.png
 
 %files license
-%defattr(-,root,root,-)
-/usr/share/doc/bovo/COPYING
-/usr/share/doc/bovo/COPYING.DOC
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/bovo/COPYING
+/usr/share/package-licenses/bovo/COPYING.DOC
 
 %files locales -f bovo.lang
 %defattr(-,root,root,-)
