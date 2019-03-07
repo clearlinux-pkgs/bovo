@@ -5,11 +5,11 @@
 # Source0 file verified with key 0xDBD2CE893E2D1C87 (cfeck@kde.org)
 #
 Name     : bovo
-Version  : 18.12.2
-Release  : 2
-URL      : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz
-Source0  : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz
-Source99 : https://download.kde.org/stable/applications/18.12.2/src/bovo-18.12.2.tar.xz.sig
+Version  : 18.12.3
+Release  : 3
+URL      : https://download.kde.org/stable/applications/18.12.3/src/bovo-18.12.3.tar.xz
+Source0  : https://download.kde.org/stable/applications/18.12.3/src/bovo-18.12.3.tar.xz
+Source99 : https://download.kde.org/stable/applications/18.12.3/src/bovo-18.12.3.tar.xz.sig
 Summary  : A Gomoku like game for two players
 Group    : Development/Tools
 License  : GFDL-1.2 GPL-2.0
@@ -68,22 +68,23 @@ locales components for the bovo package.
 
 
 %prep
-%setup -q -n bovo-18.12.2
+%setup -q -n bovo-18.12.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549893949
+export SOURCE_DATE_EPOCH=1551982180
 mkdir -p clr-build
 pushd clr-build
+export LDFLAGS="${LDFLAGS} -fno-lto"
 %cmake ..
 make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1549893949
+export SOURCE_DATE_EPOCH=1551982180
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bovo
 cp COPYING %{buildroot}/usr/share/package-licenses/bovo/COPYING
