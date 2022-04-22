@@ -5,14 +5,14 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : bovo
-Version  : 21.12.3
-Release  : 36
-URL      : https://download.kde.org/stable/release-service/21.12.3/src/bovo-21.12.3.tar.xz
-Source0  : https://download.kde.org/stable/release-service/21.12.3/src/bovo-21.12.3.tar.xz
-Source1  : https://download.kde.org/stable/release-service/21.12.3/src/bovo-21.12.3.tar.xz.sig
+Version  : 22.04.0
+Release  : 37
+URL      : https://download.kde.org/stable/release-service/22.04.0/src/bovo-22.04.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/22.04.0/src/bovo-22.04.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/22.04.0/src/bovo-22.04.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
-License  : GFDL-1.2 GPL-2.0
+License  : BSD-3-Clause GFDL-1.2 GPL-2.0
 Requires: bovo-bin = %{version}-%{release}
 Requires: bovo-data = %{version}-%{release}
 Requires: bovo-license = %{version}-%{release}
@@ -21,7 +21,6 @@ BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : extra-cmake-modules-data
 BuildRequires : libkdegames-dev
-BuildRequires : qtbase-dev mesa-dev
 
 %description
 EXTENDED
@@ -69,15 +68,15 @@ locales components for the bovo package.
 
 
 %prep
-%setup -q -n bovo-21.12.3
-cd %{_builddir}/bovo-21.12.3
+%setup -q -n bovo-22.04.0
+cd %{_builddir}/bovo-22.04.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1646529379
+export SOURCE_DATE_EPOCH=1650664906
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -93,11 +92,12 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1646529379
+export SOURCE_DATE_EPOCH=1650664906
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bovo
-cp %{_builddir}/bovo-21.12.3/COPYING %{buildroot}/usr/share/package-licenses/bovo/3860f7708aae6a8ddfe8483263b2a5f29b83c975
-cp %{_builddir}/bovo-21.12.3/COPYING.DOC %{buildroot}/usr/share/package-licenses/bovo/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
+cp %{_builddir}/bovo-22.04.0/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/bovo/29fb05b49e12a380545499938c4879440bd8851e
+cp %{_builddir}/bovo-22.04.0/COPYING %{buildroot}/usr/share/package-licenses/bovo/3860f7708aae6a8ddfe8483263b2a5f29b83c975
+cp %{_builddir}/bovo-22.04.0/COPYING.DOC %{buildroot}/usr/share/package-licenses/bovo/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 pushd clr-build
 %make_install
 popd
@@ -163,6 +163,7 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
+/usr/share/package-licenses/bovo/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/bovo/3860f7708aae6a8ddfe8483263b2a5f29b83c975
 /usr/share/package-licenses/bovo/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
