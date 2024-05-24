@@ -8,11 +8,11 @@
 # Source0 file verified with key 0xBB463350D6EF31EF (heiko@shruuf.de)
 #
 Name     : bovo
-Version  : 24.02.2
-Release  : 65
-URL      : https://download.kde.org/stable/release-service/24.02.2/src/bovo-24.02.2.tar.xz
-Source0  : https://download.kde.org/stable/release-service/24.02.2/src/bovo-24.02.2.tar.xz
-Source1  : https://download.kde.org/stable/release-service/24.02.2/src/bovo-24.02.2.tar.xz.sig
+Version  : 24.05.0
+Release  : 66
+URL      : https://download.kde.org/stable/release-service/24.05.0/src/bovo-24.05.0.tar.xz
+Source0  : https://download.kde.org/stable/release-service/24.05.0/src/bovo-24.05.0.tar.xz
+Source1  : https://download.kde.org/stable/release-service/24.05.0/src/bovo-24.05.0.tar.xz.sig
 Source2  : BB463350D6EF31EF.pkey
 Summary  : No detailed summary available
 Group    : Development/Tools
@@ -85,15 +85,15 @@ chmod 700 .gnupg
 gpg --homedir .gnupg --import %{SOURCE2}
 gpg --homedir .gnupg --status-fd 1 --verify %{SOURCE1} %{SOURCE0} > gpg.status
 grep -E '^\[GNUPG:\] (GOODSIG|EXPKEYSIG) BB463350D6EF31EF' gpg.status
-%setup -q -n bovo-24.02.2
-cd %{_builddir}/bovo-24.02.2
+%setup -q -n bovo-24.05.0
+cd %{_builddir}/bovo-24.05.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1713226873
+export SOURCE_DATE_EPOCH=1716517382
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -154,12 +154,13 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1713226873
+export SOURCE_DATE_EPOCH=1716517382
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bovo
 cp %{_builddir}/bovo-%{version}/CMakePresets.json.license %{buildroot}/usr/share/package-licenses/bovo/29fb05b49e12a380545499938c4879440bd8851e || :
 cp %{_builddir}/bovo-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bovo/3860f7708aae6a8ddfe8483263b2a5f29b83c975 || :
 cp %{_builddir}/bovo-%{version}/COPYING.DOC %{buildroot}/usr/share/package-licenses/bovo/bd75d59f9d7d9731bfabdc48ecd19e704d218e38 || :
+cp %{_builddir}/bovo-%{version}/LICENSES/BSD-3-Clause.txt %{buildroot}/usr/share/package-licenses/bovo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c || :
 export GOAMD64=v2
 GOAMD64=v3
 pushd clr-build-avx2
@@ -183,13 +184,13 @@ popd
 %files data
 %defattr(-,root,root,-)
 /usr/share/applications/org.kde.bovo.desktop
-/usr/share/bovo/themes/gomoku/theme.svg
+/usr/share/bovo/themes/gomoku/theme.svgz
 /usr/share/bovo/themes/gomoku/themerc
-/usr/share/bovo/themes/highcontrast/theme.svg
+/usr/share/bovo/themes/highcontrast/theme.svgz
 /usr/share/bovo/themes/highcontrast/themerc
-/usr/share/bovo/themes/scribble/theme.svg
+/usr/share/bovo/themes/scribble/theme.svgz
 /usr/share/bovo/themes/scribble/themerc
-/usr/share/bovo/themes/spacy/theme.svg
+/usr/share/bovo/themes/spacy/theme.svgz
 /usr/share/bovo/themes/spacy/themerc
 /usr/share/icons/hicolor/128x128/apps/bovo.png
 /usr/share/icons/hicolor/16x16/apps/bovo.png
@@ -237,6 +238,7 @@ popd
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/bovo/29fb05b49e12a380545499938c4879440bd8851e
 /usr/share/package-licenses/bovo/3860f7708aae6a8ddfe8483263b2a5f29b83c975
+/usr/share/package-licenses/bovo/9950d3fdce1cff1f71212fb5abd31453c6ee2f8c
 /usr/share/package-licenses/bovo/bd75d59f9d7d9731bfabdc48ecd19e704d218e38
 
 %files locales -f bovo.lang
